@@ -1,26 +1,29 @@
-import React from "react";
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+const TrafficLight = () => {
+  const [color, setColor] = useState("red");
 
-//create your first component
-const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+  const handleColorChange = (newColor) => {
+    setColor(newColor);
+  };
+
+  const handleAddPurple = () => {
+    setColor("purple");
+  };
+
+  return (
+    <div className="traffic-light-container">
+      <div className="traffic-light">
+        <div style={{ backgroundColor: "red", opacity: color === "red" ? 1 : 0.2 }} onClick={() => handleColorChange("red")}></div>
+        <div style={{ backgroundColor: "yellow", opacity: color === "yellow" ? 1 : 0.2 }} onClick={() => handleColorChange("yellow")}></div>
+        <div style={{ backgroundColor: "green", opacity: color === "green" ? 1 : 0.2 }} onClick={() => handleColorChange("green")}></div>
+      </div>
+    </div>
+  );
 };
 
+ReactDOM.render(<TrafficLight />, document.querySelector('#app'));
+
 export default Home;
+
